@@ -1,0 +1,24 @@
+<div [@enterLeave] class="card mb-5">
+  <ng-container *ngIf="quote != null; else errorMsg">
+    <div class="card-body">
+        <div class="d-flex">
+          <div class="container text-center">
+            <h4>Buying</h4>
+            <span>{{ quote.buyingRate }}</span>  
+          </div>
+          <div class="container text-center">
+            <h4>Selling</h4>
+            <span>{{ quote.sellingRate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-header d-flex justify-content-end">
+        {{ quote.updatedTo | timeAgo }} ago
+      </div>
+  </ng-container>
+  <ng-template #errorMsg>
+    <div class="card-body">
+        <h5 class="text-center">No quote available for this currency</h5>  
+    </div>
+  </ng-template>
+</div>

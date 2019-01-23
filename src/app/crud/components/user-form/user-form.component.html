@@ -1,0 +1,29 @@
+<form [formGroup]="userForm">
+  
+  <div class="form-group">
+    <input type="text" class="form-control form-control-lg" placeholder="First name" formControlName="first_name">
+    <p class="text-danger" *ngIf="first_name.errors?.required && first_name.touched">required field</p>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control form-control-lg" placeholder="Last name" formControlName="last_name">
+    <p class="text-danger" *ngIf="last_name.errors?.required && last_name.touched">required field</p>
+  </div>
+  <div class="form-group">
+    <input type="email" class="form-control form-control-lg" placeholder="Email" formControlName="email">
+    <p class="text-danger" *ngIf="email.errors?.required && email.touched">required field</p>
+    <p class="text-danger" *ngIf="email.errors?.emailFormat && email.touched && !email.errors?.required">invalid email</p>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control form-control-lg" placeholder="password" formControlName="password">
+    <p class="text-danger" *ngIf="password.errors?.required && password.touched">required field</p>
+    <p class="text-danger" *ngIf="password.errors?.minlength && password.touched">password must contain at least 8 characters</p>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control form-control-lg" placeholder="Confirm password" formControlName="confirm_password">
+    <p class="text-danger" *ngIf="confirm_password.errors?.required && confirm_password.touched">required field</p>
+    <p class="text-danger" *ngIf="userForm.errors?.matchPasswords && confirm_password.touched && !confirm_password.errors?.required">Password do not match</p>
+  </div>
+
+  <button type='submit' class="btn btn-lg btn-primary btn-block" [disabled]="userForm.invalid" (click)="onSubmitUser()">Confirm</button>
+
+</form>

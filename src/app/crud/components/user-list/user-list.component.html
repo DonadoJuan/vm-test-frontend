@@ -1,0 +1,33 @@
+<ng-container  *ngIf="(userList$ | async) as userList; else loading">
+  <table class="table"  *ngIf="userList.length > 0; else noUsersFound">
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <th>{{user.first_name}}</th>
+          <th>{{user.last_name}}</th>
+          <th>{{user.email}}</th>
+          <th>{{user.password}}</th>
+          <th>
+            <button class="btn btn-danger mr-3" (click)="deleteUser(user._id)">Delete</button>
+            <button class="btn btn-warning" (click)="updateUser(user)">Modify</button>
+          </th>
+        </tr>
+      </tbody>
+  </table>
+</ng-container>
+<ng-template #noUsersFound>
+    <div class="alert alert-warning border border-white text-center">
+        <span class="font-weight-bold">No users were found</span>
+    </div>
+</ng-template>
+<ng-template #loading>
+  <h5 class="text-bold text-center">Loading...</h5>  
+</ng-template>
